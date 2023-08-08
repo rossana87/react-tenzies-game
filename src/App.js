@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid'
 
 
 const App = () => {
-  
+
   const allNewDice = () => {
     const diceArray = []
     for (let i = 0; i < 10; i++) {
@@ -23,8 +23,16 @@ const App = () => {
     setDice(allNewDice())
   }
 
+  const holdDice = (id) => {
+    setDice(prevDice => prevDice.map(die => {
+      return die.id === id ?
+        { ...die, isHeld: !die.isHeld } :
+        die
+    }))
+  }
+
   const diceElements = dice.map(die => (
-    <Die key={die.id} value={die.value}/> 
+    <Die key={die.id} value={die.value} isHeld={die.isHeld} holdDice={() => holdDice(die.id)}/> 
   ))
 
   return (
