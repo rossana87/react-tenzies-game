@@ -1,8 +1,40 @@
-import { useEffect } from 'react'
-import axios from 'axios'
+import { useState } from 'react'
+import Die from './components/Die'
+import { nanoid } from 'nanoid'
+
 
 const App = () => {
-  return <h1>Hello</h1>
+  
+  const allNewDice = () => {
+    const diceArray = []
+    for (let i = 0; i < 10; i++) {
+      diceArray.push({
+        value: Math.ceil(Math.random() * 6), 
+        isHeld: false,
+        id: nanoid(),
+      })
+    } 
+    return diceArray
+  }
+
+  const [dice, setDice] = useState(allNewDice())
+  
+  const rollDice = () => {
+    setDice(allNewDice())
+  }
+
+  const diceElements = dice.map(die => (
+    <Die key={die.id} value={die.value}/> 
+  ))
+
+  return (
+    <main className='container'>
+      <div className='die-board'>
+        {diceElements}
+      </div>
+      <button className='roll-dice' onClick={rollDice}>Roll</button>
+    </main>
+  )
 }
 
 export default App

@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #0B2434;
+  padding: 25px;
+}
+body .container {
+  background-color: #F5F5F5;
+  height: 600px;
+  max-width: 600px;
+  border-radius: 5px;
+}
+
+.dice-board {
+  display: grid;
+  grid-template: auto auto/repeat(5, 1fr);
+  grid-gap: 5px;
+}/*# sourceMappingURL=main.css.map */
